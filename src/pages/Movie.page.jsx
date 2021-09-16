@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from "react-router";
 import Slider from "react-slick";
 
-// Component
+// Components
 import MovieHero from "../components/MovieHero/MovieHero.component";
 import Cast from "../components/Cast/Cast.component";
 import PosterSlider from "../components/PosterSlider/PosterSlider.component";
