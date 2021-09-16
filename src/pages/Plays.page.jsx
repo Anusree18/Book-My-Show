@@ -1,6 +1,6 @@
 import React from "react";
 
-// component
+// components
 import Poster from "../components/Poster/poster.component";
 import PlaysFilter from "../components/PlaysFilters/PlaysFilters.component";
 
