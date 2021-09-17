@@ -1,5 +1,5 @@
 import React from "react";
-import {BiChevronRight, BiSearchAlt2, HiMenu, BiChevronDown} from "react-icons/bi";
+import {BiChevronRight, BiSearchAlt2, BiMenu, BiChevronDown} from "react-icons/bi";
 
 const NavSm = () =>{
     return (
@@ -49,7 +49,7 @@ const NavLg = () =>{
                 Kochi<BiChevronDown/></span>
                 <button className="bg-red-600 text-white px-2 py-1 text-sm rounded">Sign In</button>
                 <div className="w-8 h-8 text-white">
-                    <HiMenu className="w-full h-full"/>
+                    <BiMenu className="w-full h-full"/>
                 </div>
             </div>
         </div>
