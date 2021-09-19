@@ -2,7 +2,7 @@ import React from "react";
 
 // components
 import Poster from "../components/Poster/poster.component";
-import PlaysFilter from "../components/PlaysFilters/PlaysFilters.component";
+import PlaysFilter from "../components/PlaysFilters/PlaysFilter.component";
 
 const Plays = () => {
   return (

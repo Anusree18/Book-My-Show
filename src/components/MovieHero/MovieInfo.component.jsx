@@ -1,80 +1,74 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+
+// components
+import PaymentModal from "../PaymentModal/Payment.component";
+
+// Context
 import { MovieContext } from "../../context/movie.context";
 
-// context
-import MovieInfo from "./MovieInfo.component";
+const MovieInfo = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [price, setPrice] = useState(0);
 
-const MovieHero = () => {
   const { movie } = useContext(MovieContext);
+
+  // optional chaining.
+  const genres = movie.genres?.map(({ name }) => name).join(", ");
+
+  const rentMovies = () => {
+    setIsOpen(true);
+    setPrice(149);
+  };
+
+  const buyMovies = () => {
+    setIsOpen(true);
+    setPrice(599);
+  };
+
   return (
     <>
-      <div>
-        {/* mobile */}
-        <div
-          className="relative md:hidden w-full"
-          style={{ height: "calc(180vw)" }}
-        >
-          <div className="absolute z-20 bottom-4 left-4">
-            <MovieInfo />
+      <PaymentModal setIsOpen={setIsOpen} isOpen={isOpen} price={price} />
+      <div className="flex flex-col gap-3 lg:gap-8">
+        <div className="flex items-center gap-3 md:px-4">
+          <div className="w-40 h-8">
+            <img
+              src="https://in.bmscdn.com/moviemode/tvod/premiere-tag.png"
+              alt="premier"
+              className="w-full h-full"
+            />
           </div>
-          <div className="w-full h-56 bg-opacity-50 absolute bg-black z-10 bottom-0" />
-          <img
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-            alt="poster"
-            className="w-full h-full"
-          />
+          <span className="bg-bms-700 p-1 text-xs text-white rounded-md">
+            Streaming now
+          </span>
         </div>
-
-        {/* Medium */}
-        <div
-          className="relative hidden md:block w-full lg:hidden"
-          style={{ height: "calc(100vw)" }}
-        >
-          <div className="w-full h-56 bg-opacity-50 absolute bg-black z-10 bottom-0" />
-          <div className="absolute z-20 bottom-4 ">
-            <MovieInfo />
+        <h1 className="text-white lg:text-5xl font-bold hidden lg:block ">
+          {movie.original_title}
+        </h1>
+        <div className="flex flex-col-reverse gap-3 lg:gap-5 lg:flex-col">
+          <div className="text-white font-light flex flex-col gap-2 md:px-4">
+            <h4>4k &bull; {movie.original_language}</h4>
+            <h4>
+              {(movie.runtime / 60).toFixed(2)} h &bull; {genres} &bull; 13+
+            </h4>
           </div>
-          <img
-            src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-            alt="poster"
-            className="w-full h-full"
-          />
-        </div>
-
-        {/* Large */}
-        <div
-          className="relative hidden w-full lg:block"
-          style={{ height: "30rem" }}
-        >
-          <div
-            className="absolute z-10 w-full h-full"
-            style={{
-              backgroundImage:
-                "linear-gradient(90deg, rgb(34, 34, 34) 24.97%, rgb(34, 34, 34) 38.3%, rgba(34, 34, 34, 0.04) 97.47%, rgb(34, 34, 34) 100%)",
-            }}
-          />
-
-          <div className="absolute z-30 left-24 top-10 flex items-center gap-10">
-            <div className=" w-64 h-96 ">
-              <img
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                alt="poster"
-                className="w-full h-full rounded-xl"
-              />
-            </div>
-            <div>
-              <MovieInfo />
-            </div>
+          <div className="flex items-center gap-3 md:px-4 md:w-screen lg:w-full">
+            <button
+              onClick={rentMovies}
+              className="bg-red-600 w-full py-3 text-white font-semibold rounded-lg"
+            >
+              Rent ₹149
+            </button>
+            <button
+              onClick={buyMovies}
+              className="bg-red-600 w-full py-3 text-white font-semibold rounded-lg"
+            >
+              Buy ₹599
+            </button>
           </div>
-          <img
-            src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}
-            alt="poster"
-            className="w-full h-full"
-          />
         </div>
       </div>
     </>
   );
 };
 
-export default MovieHero;
+export default MovieInfo;
